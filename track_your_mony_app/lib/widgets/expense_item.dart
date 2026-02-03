@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:track_your_mony_app/models/expense.dart';
@@ -23,9 +25,7 @@ class ExpenseItem extends StatelessWidget {
             const SizedBox(height: 4),
             Row(
               children: [
-                Icon(categoryIcons[expense.category] != null
-                    ? categoryIcons[expense.category]!
-                    : Icons.help_outline),
+                Icon(categoryIcons[expense.category]),
                 const SizedBox(width: 8),
                 Text('\$${expense.amount.toStringAsFixed(2)}'),
                 const Spacer(),
@@ -33,7 +33,7 @@ class ExpenseItem extends StatelessWidget {
                   children: [
                     Icon(Icons.calendar_month),
                     const SizedBox(width: 8),
-                    Text('${expense.date.day}/${expense.date.month}/${expense.date.year}'),
+                    Text(expense.formattedDate),
 
                   ],
                 ),
