@@ -23,14 +23,17 @@ class ExpenseItem extends StatelessWidget {
             const SizedBox(height: 4),
             Row(
               children: [
-                Icon(Icons.attach_money),
+                Icon(categoryIcons[expense.category] != null
+                    ? categoryIcons[expense.category]!
+                    : Icons.help_outline),
+                const SizedBox(width: 8),
                 Text('\$${expense.amount.toStringAsFixed(2)}'),
                 const Spacer(),
                 Row(
                   children: [
-                Icon(Icons.calendar_month),
-                const SizedBox(width: 8),
-                Text('${expense.date.day}/${expense.date.month}/${expense.date.year}'),
+                    Icon(Icons.calendar_month),
+                    const SizedBox(width: 8),
+                    Text('${expense.date.day}/${expense.date.month}/${expense.date.year}'),
 
                   ],
                 ),
