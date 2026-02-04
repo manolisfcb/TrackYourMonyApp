@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:track_your_mony_app/models/expense.dart';
 import 'package:track_your_mony_app/widgets/expenses_list.dart';
-class Expenses  extends StatefulWidget {
-  const Expenses ({super.key});
+import 'package:track_your_mony_app/widgets/new_expense.dart';
+
+class Expenses extends StatefulWidget {
+  const Expenses({super.key});
 
   @override
-  State<Expenses > createState() => _ExpensesState();
+  State<Expenses> createState() => _ExpensesState();
 }
 
-class _ExpensesState extends State<Expenses > {
-
+class _ExpensesState extends State<Expenses> {
   final List<Expense> registeredExpenses = [
     Expense(
       title: 'Flutter Course',
@@ -37,12 +38,24 @@ class _ExpensesState extends State<Expenses > {
     ),
   ];
 
+  void _addExpense() {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => const NewExpense(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Expenses Screen'),
+        backgroundColor: Colors.blueAccent,
         centerTitle: true,
+
+        actions: [
+          IconButton(onPressed: _addExpense, icon: const Icon(Icons.add)),
+        ],
       ),
       body: Column(
         children: [
@@ -54,4 +67,3 @@ class _ExpensesState extends State<Expenses > {
     );
   }
 }
-
